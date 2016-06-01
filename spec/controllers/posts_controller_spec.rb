@@ -24,12 +24,25 @@ RSpec.describe PostsController, type: :controller do
 #    end
 #  end
 #
-#  describe "GET #new" do
-#    it "returns http success" do
-#      get :new
-#      expect(response).to have_http_status(:success)
-#    end
-#  end
+describe "GET new" do
+  it "returns http success" do
+    get :new
+    expect(response).to have_http_status(:success)
+  end
+
+# #2
+  it "renders the #new view" do
+    get :new
+    expect(response).to render_template :new
+  end
+
+# #3
+  it "instantiates @post" do
+    get :new
+    expect(assigns(:post)).not_to be_nil
+  end
+end
+
 #
 #  describe "GET #edit" do
 #    it "returns http success" do
