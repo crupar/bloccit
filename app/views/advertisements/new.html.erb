@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+</head>
+
+<body>
+
+  <h1>New Advertisement</h1>
+
+  <div class="row">
+    <div class="col-md-4">
+      <p>Guidelines for advertisements</p>
+      <ul>
+        <li>Avoid at all costs.</li>
+        <li>A necessary evil but make as painless and not annoying as possible.</li>
+      </ul>
+    </div>
+    <div class="col-md-8">
+      <%= form_for @advertisement do |f| %>
+        <div class="form-group">
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'form-control', placeholder: "Enter advertisement title" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :body %>
+          <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter advertisement body" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price %>
+          <%= f.number_field :price, in: 1.0..10000000000000.0, step: 0.5, class: 'form-control', placeholder: "5000"%>
+        <div class="form-group">
+          <%= f.submit "Save", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>
