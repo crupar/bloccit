@@ -20,7 +20,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe "GET show" do
     #failing
     it "returns http success" do
-      get :show, {id: question.id}
+      get :show, {id: my_question.id}
       expect(response).to have_http_status(:success)
     end
 
@@ -52,24 +52,21 @@ RSpec.describe QuestionsController, type: :controller do
     end
   end
 
-  describe "question create" do
-    #failing
-    it "increases the number of question by 1" do
-      expect{question :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(question,:count).by(1)
-    end
+  describe "POST create" do
+      it "increases the number of question by 1" do
+        expect{post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}}.to change(Question,:count).by(1)
+      end
 
-    #failing
-    it "assigns the new question to @question" do
-      question :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-      expect(assigns(:question)).to eq question.last
-    end
+      it "assigns the new post to @question" do
+        post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        expect(assigns(:question)).to eq Question.last
+      end
 
-    #failing
-    it "redirects to the new question" do
-      question :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
-      expect(response).to redirect_to question.last
+      it "redirects to the new question" do
+        post :create, question: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
+        expect(response).to redirect_to Question.last
+      end
     end
-  end
 
     describe "GET edit" do
       it "returns http success" do
@@ -120,7 +117,7 @@ RSpec.describe QuestionsController, type: :controller do
       it "deletes the question" do
         delete :destroy, {id: my_question.id}
 
-        count = question.where({id: my_question.id}).size
+        count = Question.where({id: my_question.id}).size
         expect(count).to eq 0
       end
 
