@@ -24,4 +24,20 @@ module RandomData
      letters.shuffle!
      letters[0,rand(3..8)].join
    end
+
+
+    def self.random_question
+      strings = []
+       rand(3..8).times do
+         strings << random_word
+       end
+
+       question = strings.join(" ")
+       question.capitalize << "?"
+     end
+
+     def self.random_boolean
+       rand(2) == 1 ? true : false
+     end
+     
  end
