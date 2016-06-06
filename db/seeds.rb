@@ -27,14 +27,15 @@ posts = Post.all
   )
 end
 
-10.times do
+100.times do
   SponsoredPost.create!(
-  topic: topics.sample,
-  title: RandomData.random_sentence,
-  body: RandomData.random_paragraph,
-  price: RandomData.random_number
+  topic:  topics.sample,
+  title:  RandomData.random_sentence,
+  body:   RandomData.random_paragraph,
+  price:  RandomData.random_number
   )
 end
+sponsored_posts = SponsoredPost.all
 
 puts "Seed finished"
 puts "#{Topic.count} topics created"
