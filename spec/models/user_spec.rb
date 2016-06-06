@@ -39,11 +39,11 @@ RSpec.describe User, type: :model do
 
 
 describe "format user name" do
-  let(:user) { User.create!(name: "bloc head", email: "user@bloccit.com", password: "password") }
+  let(:user) { User.create!(name: "bloc user", email: "bloc@bloccit.com", password: "1234567890") }
 
    it "should format user name" do
      user.save
-     expect(user.name).to eq "Bloc Head"
+     expect(user.name).to eq "Bloc User"
    end
  end
 
