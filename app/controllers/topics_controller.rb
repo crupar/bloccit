@@ -63,7 +63,7 @@ private
   end
 
   def authorize_user
-    unless current_user.admin?
+    unless (current_user.admin? || current_user.moderator?)
       flash[:alert] = "You must be an admin to do that."
       redirect_to topics_path
     end
