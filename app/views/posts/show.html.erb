@@ -17,6 +17,10 @@
   </h1>  <div class="row">
     <div class="col-md-8">
       <p><%= @post.body %></p>
+      <div>
+        <h3>Comments</h3>
+        <%= render @post.comments %>
+      </div>
     </div>
 
     <% if user_is_authorized_for_post?(@post) %>
