@@ -1,3 +1,5 @@
+<html>
+
 <h1><%= @topic.name %></h1>
 
 <% if user_is_authorized_for_topics? %>
@@ -13,7 +15,10 @@
       <br />
       <%= @topic.description %>
     </p>
+    <div>
+      <h3>Comments</h3>
 
+  </div>
     <% @topic.posts.each do |post| %>
       <div class ="media">
         <div class="media-body">

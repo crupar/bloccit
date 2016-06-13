@@ -47,6 +47,25 @@ RSpec.describe CommentsController, type: :controller do
         expect(response).to redirect_to([my_topic, my_post])
       end
     end
+
+# for comments in topics
+    describe "POST create" do
+      it "increases the number of comments in topics by 1" do
+        expect{ post :create, topic_id: my_topic.id, comment: {body: RandomData.random_sentence} }.to change(Comment,:count).by(1)
+      end
+
+      it "redirects to the topic show view" do
+        post :create, topic_id: my_topic.id, comment: {body: RandomData.random_sentence}
+        expect(response).to redirect_to [my_topic]
+      end
+    end
+
+    describe "DELETE destroy" do
+      it "redirects the user to the topic show view" do
+        delete :destroy, topic_id: my_topic.id, id: my_comment.id
+        expect(response).to redirect_to([my_topic])
+      end
+    end
   end
 
 
@@ -78,6 +97,31 @@ RSpec.describe CommentsController, type: :controller do
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
+
+    # for creating comments in topics
+        describe "POST create" do
+          it "increases the number of comments in topics by 1" do
+            expect{ post :create, topic_id: my_topic.id, comment: {body: RandomData.random_sentence} }.to change(Comment,:count).by(1)
+          end
+
+          it "redirects to the topic show view" do
+            post :create, topic_id: my_topic.id, comment: {body: RandomData.random_sentence}
+            expect(response).to redirect_to [my_topic]
+          end
+        end
+
+        describe "DELETE destroy" do
+          it "deletes the topic_id comment" do
+            delete :destroy, topic_id: my_topic.id, id: my_comment.id
+            count = Comment.where({id: my_comment.id}).count
+            expect(count).to eq 0
+          end
+
+          it "redirects to the topic show view" do
+            delete :destroy, topic_id: my_topic.id, id: my_comment.id
+            expect(response).to redirect_to [my_topic]
+          end
+        end
   end
 
   context "admin user doing CRUD on a comment they don't own" do
@@ -109,6 +153,33 @@ RSpec.describe CommentsController, type: :controller do
         expect(response).to redirect_to [my_topic, my_post]
       end
     end
+
+
+# for creating comments in topics
+describe "POST create" do
+  it "increases the number of comments on topic by 1" do
+    expect{ post :create, topic_id: my_topic.id, comment: {body: RandomData.random_sentence} }.to change(Comment,:count).by(1)
+  end
+
+  it "redirects to the topic show view" do
+    post :create, topic_id: my_topic.id, comment: {body: RandomData.random_sentence}
+    expect(response).to redirect_to [my_topic]
+  end
+end
+
+describe "DELETE destroy comment on topic" do
+  it "deletes the comment" do
+    delete :destroy, topic_id: my_topic.id, id: my_comment.id
+    count = Comment.where({id: my_comment.id}).count
+    expect(count).to eq 0
+  end
+
+  it "redirects to the topic show view" do
+    delete :destroy, topic_id: my_topic.id, id: my_comment.id
+    expect(response).to redirect_to [my_topic]
+  end
+end
+
   end
 
 
