@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
   get "about" => "welcome#about"
   root "welcome#index"
-  #root({to: 'welcome#index'})
+  post "/up-vote" => "votes#up_vote", as: :up_vote
+  post "/down-vote" => "votes#down_vote", as: :down_vote
 end
