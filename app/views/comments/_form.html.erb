@@ -2,19 +2,13 @@
 
 <body>
 <h4>Add a comment</h4>
-<%= form_for [post, comment] do |f| %>
+
+<%= form_for [(post || topic), comment] do |f| %>
   <div class="form-group">
     <%= f.label :body, class: 'sr-only' %>
     <%= f.text_field :body, class: 'form-control', placeholder: "Enter a new comment" %>
   </div>
   <%= f.submit "Submit Comment", class: 'btn btn-default pull-right' %>
-<% end %>
-  <%= form_for [topic, comment] do |f| %>
-    <div class="form-group">
-      <%= f.label :body, class: 'sr-only' %>
-      <%= f.text_field :body, class: 'form-control', placeholder: "Enter a new comment" %>
-    </div>
-    <%= f.submit "Submit Comment", class: 'btn btn-default pull-right' %>
 <% end %>
 
 </body>

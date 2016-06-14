@@ -6,7 +6,7 @@ RSpec.describe Label, type: :model do
   let(:post) { topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user) }
   let(:label) { Label.create!(name: 'Label') }
   let(:label2) { Label.create!(name: 'Label2') }
-
+  
 
   it { is_expected.to have_many :labelings }
   it { is_expected.to have_many(:topics).through(:labelings) }
