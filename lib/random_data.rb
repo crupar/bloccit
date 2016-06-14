@@ -32,4 +32,8 @@ module RandomData
     letters.shuffle!
     letters[0,rand(3..8)].join
   end
+
+  def self.random_type
+      [:topic, :post].sample
+  end
 end

@@ -27,9 +27,9 @@
       <p><%= @post.body %></p>
       <div>
         <h3>Comments</h3>
-        <%= render @post.comments %>
+        <%= render @commentable.comments %>
         <% if current_user %>
-          <%= render 'comments/form', comment: Comment.new, post: @post %>
+          <%= render 'comments/form' %>
         <% end %>
       </div>
     </div>

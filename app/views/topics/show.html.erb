@@ -13,7 +13,13 @@
       <br />
       <%= @topic.description %>
     </p>
-
+    <div>
+      <h3>Comments</h3>
+      <%= render @topic.comments %>
+      <% if current_user %>
+      <%= render 'comments/form' %>
+      <% end %>
+    </div>
     <% @topic.posts.each do |post| %>
       <div class ="media">
         <div class="media-body">
