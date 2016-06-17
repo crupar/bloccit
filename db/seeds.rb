@@ -21,19 +21,13 @@ topics = Topic.all
 
 
 50.times do
-  post = Post.create!(
+  Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
     body:   RandomData.random_paragraph
   )
-
-post.update_attribute(:created_at, rand(10.minutes .. 1.year).ago)
-rand(1..5).times { post.votes.create!(value: [-1, 1].sample, user: users.sample) }
-
 end
-
-
 posts = Post.all
 
 
@@ -44,6 +38,14 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
+
+100.times do
+  Label.create!(
+  name: RandomData.random_word,
+  @post = Post.find
+  )
+end
+
 
 admin = User.create!(
   name:     'Admin User',
@@ -64,4 +66,4 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Vote.count} votes created"
+puts "#{Label.count} labels created"
