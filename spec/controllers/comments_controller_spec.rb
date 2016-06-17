@@ -23,7 +23,24 @@ RSpec.describe CommentsController, type: :controller do
         expect(response).to redirect_to(new_session_path)
       end
     end
-  end
+
+    describe "GET show" do
+      it "returns http success" do
+        get :show
+        get :show, { id: my_comment.id }
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #show view" do
+        get :show, { id: my_comment.id }
+        expect(response).to render_template :show
+      end
+
+     it "assigns my_comment to @comments" do
+       get :show, { id: my_comment.id }
+       expect(assigns(:label)).to eq(my_comment)
+     end
+    end
 
   context "member user doing CRUD on a comment they don't own" do
     before do
@@ -110,6 +127,5 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
   end
-
-
+end
 end

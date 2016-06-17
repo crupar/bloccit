@@ -5,9 +5,8 @@ before_action :authorize_user, only: [:destroy]
 
 
    def create
-     @post = Post.find(params[:post_id])
-     comment = @post.comments.new(comment_params)
-     comment.user = current_user
+     @comment = @commentable.comments.new comment_params
+     @comment.user = current_user
 
      if comment.save
        flash[:notice] = "Comment saved successfully."
@@ -19,6 +18,7 @@ before_action :authorize_user, only: [:destroy]
    end
 
    def destroy
+     
       @post = Post.find(params[:post_id])
       comment = @post.comments.find(params[:id])
 
@@ -31,6 +31,11 @@ before_action :authorize_user, only: [:destroy]
       end
     end
 
+    def show
+      @comment = Comment.find(params[:id])
+      @comment.user = current_user
+
+    end
 
    private
 

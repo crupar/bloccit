@@ -10,7 +10,6 @@
 <body>
 
   <div>
-     <%= render partial: 'votes/voter', locals: { post: @post } %>
      <h1>
        <%= @post.title %> <br>
        <small>
@@ -32,7 +31,7 @@
         <h3>Comments</h3>
         <%= render @post.comments %>
         <% if current_user %>
-          <%= render 'comments/form', comment: Comment.new, post: @post %>
+          <%= render partial: "comments/form", locals: {commentable: @post } comment: Comment.new, post: @post %>
         <% end %>
       </div>
     </div>
@@ -44,17 +43,6 @@
       </div>
     <% end %>
 
-    <div class="col-md-4">
-      <h3>
-        <%= pluralize(@post.points, 'point') %>
-        <div>
-          <small>
-            <%= pluralize(@post.up_votes, 'up vote') %>,
-            <%= pluralize(@post.down_votes, 'down vote') %>
-          </small>
-        </div>
-      </h3>
-    </div>
   </div>
 
 </body>

@@ -34,17 +34,10 @@ posts = Post.all
 100.times do
   Comment.create!(
     user: users.sample,
-    post: posts.sample,
     body: RandomData.random_paragraph
   )
 end
 
-100.times do
-  Label.create!(
-  name: RandomData.random_word,
-  @post = Post.find
-  )
-end
 
 
 admin = User.create!(
@@ -66,4 +59,3 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Label.count} labels created"

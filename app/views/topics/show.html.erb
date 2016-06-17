@@ -12,11 +12,11 @@
       <%= render partial: "labels/list", locals: { labels: @topic.labels } %>
       <br />
       <%= @topic.description %>
+      <%= render partial: "comments/comment", locals: {comment: @topic.comments } %>
     </p>
 
     <% @topic.posts.each do |post| %>
       <div class ="media">
-        <%= render partial: 'votes/voter', locals: { post: post } %>
         <div class="media-body">
           <h4 class="media-heading">
             <%= link_to post.title, topic_post_path(@topic, post) %>
@@ -34,6 +34,8 @@
   <% if current_user %>
     <div class="col-md-4">
       <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+      <%= render 'comments/form', comment: Comment.new, topic: @topic, locals: {commentable: @topic} %>
+
     </div>
   <% end %>
 

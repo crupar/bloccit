@@ -12,6 +12,19 @@ RSpec.describe Comment, type: :model do
   it { is_expected.to validate_presence_of(:body) }
   it { is_expected.to validate_length_of(:body).is_at_least(5) }
 
+
+  it { is_expected.to have_many :commentings }
+  it { is_expected.to have_many(:topics).through(:commentings) }
+  it { is_expected.to have_many(:posts).through(:commentings) }
+
+describe "commentings" do
+  it "allows comments to be associated with topics and posts" do
+    topic_comment = topic.comments[0]
+    post_comment = post.comments[0]
+
+end
+
+
   describe "attributes" do
     it "has a body attribute" do
       expect(comment).to have_attributes(body: "Comment Body")

@@ -12,7 +12,9 @@ RSpec.describe Post, type: :model do
 
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
-  it { is_expected.to have_many(:comments) }
+  it { is_expected.to have_many(:commentings) }
+  it { is_expected.to have_many(:comments).through(:commentings) }
+
   it { is_expected.to have_many(:votes) }
 
   it { is_expected.to belong_to(:topic) }
