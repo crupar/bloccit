@@ -25,7 +25,7 @@ topics = Topic.all
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
-    body:   RandomData.random_paragraph
+    body:   RandomData.random_paragraph,
   )
 end
 posts = Post.all
@@ -39,12 +39,19 @@ posts = Post.all
   )
 end
 
-100.times do
+
+10.times do
   Label.create!(
-  name: RandomData.random_word,
-  post: posts.sample
+    name: RandomData.random_word
   )
 end
+
+#10.times do
+#  Labeling.create!(
+#    labels: labels.sample,
+#    label_type: post
+#  )
+#end
 
 
 admin = User.create!(
