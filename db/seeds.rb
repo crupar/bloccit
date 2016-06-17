@@ -39,6 +39,14 @@ posts = Post.all
   )
 end
 
+100.times do
+  Label.create!(
+  name: RandomData.random_word,
+  post: posts.sample
+  )
+end
+
+
 admin = User.create!(
   name:     'Admin User',
   email:    'admin@example.com',
@@ -58,3 +66,4 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Label.count} labels created"
