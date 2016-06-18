@@ -4,6 +4,12 @@
 
 <div class="media">
   <div class="media-body">
+    <small>
+      <%= comment.user.name %> commented <%= time_ago_in_words(comment.created_at) %> ago
+      <% if user_is_authorized_for_comment?(comment) %>
+        | <%= link_to "Delete", [@post, comment], method: :delete %>
+      <% end %>
+    </small>
     <% commentable.comments.each do |comment| %>
     <p><%= comment.body %></p>
     <% end %>

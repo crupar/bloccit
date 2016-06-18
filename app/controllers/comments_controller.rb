@@ -5,7 +5,7 @@ before_action :authorize_user, only: [:destroy]
 
 
    def create
-     @comment = @commentable.comments.new comment_params
+     @comment = @commentable.comments.new(comment_params)
      @comment.user = current_user
 
      if comment.save
@@ -18,9 +18,10 @@ before_action :authorize_user, only: [:destroy]
    end
 
    def destroy
-     
-      @post = Post.find(params[:post_id])
-      comment = @post.comments.find(params[:id])
+
+      @commentable = Commentable.find(params[:id])
+      @comment = @commentable.comments.find(comment_params)
+
 
       if comment.destroy
         flash[:notice] = "Comment was deleted successfully."

@@ -21,7 +21,7 @@ describe "commentings" do
   it "allows comments to be associated with topics and posts" do
     topic_comment = topic.comments[0]
     post_comment = post.comments[0]
-
+  end
 end
 
 
