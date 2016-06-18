@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
   has_many :favorites, dependent: :destroy
+  after_create :create_favorite_post
 
   default_scope { order('rank DESC') }
 
@@ -30,6 +31,11 @@ class Post < ActiveRecord::Base
      age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
      new_rank = points + age_in_days
      update_attribute(:rank, new_rank)
+  end
+
+  def create_favorite_post
+    Favorite.create(post: self, user: self.user)
+    FavoriteMailer.new_post(self).deliver_now
   end
 
 

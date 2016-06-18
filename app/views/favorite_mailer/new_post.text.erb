@@ -1,0 +1,5 @@
+
+You created and are now following "<%= @post.title %>", you will be notified of all new comments.
+If you don't want to recieve notifications, please unfavorite the <%= link_to "post", topic_post_url(@post.topic, @post) %>.
+
+<%= link_to "View Post on site", topic_post_url(@post.topic, @post) %>
