@@ -1,5 +1,11 @@
 require 'random_data'
 
+User.destroy_all
+Topic.destroy_all
+Post.destroy_all
+Comment.destroy_all
+Label.destroy_all
+
 
 5.times do
   User.create!(
@@ -19,16 +25,22 @@ users = User.all
 end
 topics = Topic.all
 
+topics.each { |t| rand(3..5).times { t.labels << Label.new(name: FFaker::Company.bs) } }
+
 
 50.times do
-  Post.create!(
+  post = Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title:  RandomData.random_sentence,
-    body:   RandomData.random_paragraph,
+    body:   RandomData.random_paragraph
   )
+
 end
+
+
 posts = Post.all
+posts.each { |p| rand(3..5).times { p.labels << Label.new(name: FFaker::Company.bs) } }
 
 
 100.times do
@@ -38,21 +50,6 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
-
-
-10.times do
-  Label.create!(
-    name: RandomData.random_word
-  )
-end
-
-#10.times do
-#  Labeling.create!(
-#    labels: labels.sample,
-#    label_type: post
-#  )
-#end
-
 
 admin = User.create!(
   name:     'Admin User',
@@ -73,4 +70,3 @@ puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
-puts "#{Label.count} labels created"
