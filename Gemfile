@@ -30,4 +30,8 @@ gem 'bootstrap-sass'
 # Used for encrypting User passwords
 gem 'bcrypt'
 
+# Used for seeding databases
 gem 'ffaker'
+
+# Used for emailing
+gem 'figaro', '1.0'
