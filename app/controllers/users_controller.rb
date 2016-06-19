@@ -24,6 +24,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.visible_to(current_user)
+    @posts = @user.posts.no_posts = "{user.name} has not submitted any posts yet."
+    @comments = @user.comments.no_comments = "{user.name} has not submitted any comments yet."
   end
 
 end

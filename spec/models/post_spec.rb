@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
 
-  let(:name) { RandomData.random_sentence }
-  let(:description) { RandomData.random_paragraph }
-  let(:title) { RandomData.random_sentence }
-  let(:body) { RandomData.random_paragraph }
+#  let(:name) { RandomData.random_sentence }
+#  let(:description) { RandomData.random_paragraph }
+#  let(:title) { RandomData.random_sentence }
+#  let(:body) { RandomData.random_paragraph }
   let(:topic) { create(:topic) }
   let(:user) { create(:user) }
   let(:post) { create(:post) }
