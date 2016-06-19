@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
 
   default_scope { order('rank DESC') }
   scope :visible_to, -> (user) { user ? all : joins(:topic).where('topics.public' => true) }
-  scope :no_posts, -> { where('posts.count' == 0 ) }
+  scope :no_posts, -> { where('post.count <= 0') }
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true

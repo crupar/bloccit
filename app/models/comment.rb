@@ -7,8 +7,7 @@ class Comment < ActiveRecord::Base
 
   after_create :send_favorite_emails
 
-  scope :no_comments, -> { where("comments_count = 0") }
-
+  scope :no_comments, -> { where('comments.count < 0') }
 
   private
 
