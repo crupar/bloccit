@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
 
    enum role: [:member, :admin]
 
-   scope :no_posts, -> { where('posts.count' == 0 ) }
 
 def favorite_for(post)
   favorites.where(post_id: post.id).first
