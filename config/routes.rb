@@ -21,8 +21,15 @@
 
   namespace :api do
     namespace :v1 do
+<<<<<<< HEAD
       resources :users, only: [:index, :show, :create, :update]
       resources :topics, except: [:edit, :new]
+=======
+      resources :users, only: [:index, :show]
+      resources :topics, only: [:index, :show]
+      resources :posts, only: [:index, :show]
+      resources :comments, only: [:index, :show]
+>>>>>>> assignment-48
     end
   end
 
