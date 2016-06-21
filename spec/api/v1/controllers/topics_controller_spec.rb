@@ -16,7 +16,6 @@ require 'rails_helper'
        expect(response).to have_http_status(:success)
      end
 
-<<<<<<< HEAD
      it "PUT update returns http unauthenticated" do
        put :update, id: my_topic.id, topic: {name: "Topic Name", description: "Topic Description"}
        expect(response).to have_http_status(401)
@@ -30,13 +29,7 @@ require 'rails_helper'
      it "DELETE destroy returns http unauthenticated" do
        delete :destroy, id: my_topic.id
        expect(response).to have_http_status(401)
-=======
-     it "GET show returns child posts" do
-       get :show, id: my_topic.id
-       response_hash = JSON.parse response.body
-       expect(response_hash['posts']).to_not be_nil
->>>>>>> assignment-48
-     end
+
    end
 
    context "unauthorized user" do
@@ -54,7 +47,6 @@ require 'rails_helper'
        expect(response).to have_http_status(:success)
      end
 
-<<<<<<< HEAD
    it "PUT update returns http forbidden" do
      put :update, id: my_topic.id, topic: {name: "Topic Name", description: "Topic Description"}
      expect(response).to have_http_status(403)
@@ -134,21 +126,5 @@ require 'rails_helper'
       end
     end
   end
-
-=======
-     it "GET show returns child posts" do
-       get :show, id: my_topic.id
-       response_hash = JSON.parse response.body
-       expect(response_hash['posts']).to_not be_nil
-     end
- end
-
- context "authenticated and authorized users" do
-   before do
-     my_user.admin!
-     controller.request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
-     @new_topic = build(:topic)
-   end
- end
->>>>>>> assignment-48
+end
 end

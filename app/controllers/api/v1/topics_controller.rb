@@ -33,29 +33,6 @@ class Api::V1::TopicsController < Api::V1::BaseController
     end
   end
 
-<<<<<<< HEAD
-  def update
-    topic = Topic.find(params[:id])
-
-    if topic.update_attributes(topic_params)
-      render json: topic, status: 200
-    else
-      render json: {error: "Topic update failed", status: 400}, status: 400
-    end
-  end
-
-  def create
-    topic = Topic.new(topic_params)
-    if topic.valid?
-      topic.save!
-      render json: topic, status: 201
-    else
-      render json: {error: "Topic is invalid", status: 400}, status: 400
-    end
-  end
-
-=======
->>>>>>> assignment-48
   def destroy
     topic = Topic.find(params[:id])
 

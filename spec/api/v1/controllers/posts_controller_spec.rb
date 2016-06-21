@@ -24,7 +24,23 @@ include RandomData
       response_hash = JSON.parse response.body
       expect(response_hash['comments']).to_not be_nil
     end
+
+  it 'PUT update returns http unauthenticated' do
+    put :update, id: my_post.id, post: { title: 'New Post Name', description: 'New Post Description', user: my_user, topic: my_topic }
+    expect(response).to have_http_status(401)
   end
+
+  it 'POST create returns http unauthenticated' do
+    post :create, topic_id: my_topic.id, post: { title: 'Post Name', description: 'Post Description', user: my_user, topic: my_topic }
+    expect(response).to have_http_status(401)
+  end
+
+  it 'DELETE destroy returns http unauthenticated' do
+    delete :destroy, id: my_post.id
+    expect(response).to have_http_status(401)
+  end
+end
+
 
 
   context "unauthorized user" do
@@ -46,7 +62,28 @@ include RandomData
       response_hash = JSON.parse response.body
       expect(response_hash['comments']).to_not be_nil
     end
+    it 'PUT update returns http unauthenticated' do
+      put :update, id: my_post.id, topic: { title: 'This is a new title' }
+      expect(response).to have_http_status(403)
+    end
+
+    it 'POST create returns http unauthenticated' do
+      post :create, post: { title: 'New post title', description: 'This is a new post body created in testing.', user: my_user, topic: my_topic }
+      expect(response).to have_http_status(403)
+    end
+
+    it 'DELETE destroy returns http unauthenticated' do
+      delete :destroy, id: my_post.id
+      expect(response).to have_http_status(403)
+    end
   end
 
-
+  context 'unauthorized user' do
+    before do
+      my_user.admin!
+      controller.request.env['HTTP_AUTHORIZATION'] =
+        ActionController::HttpAuthentication::Token.encode_credentials(my_user.auth_token)
+      @new_topic = build(:post, user: my_user, topic: my_topic)
+    end
+  end
 end
