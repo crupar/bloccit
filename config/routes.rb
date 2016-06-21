@@ -22,7 +22,7 @@
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index, :show, :create, :update]
-      resources :topics, only: [:index, :show]
+      resources :topics, except: [:edit, :new]
     end
   end
 
