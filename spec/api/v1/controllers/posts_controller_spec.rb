@@ -8,11 +8,11 @@ include RandomData
    let(:my_comment) { Comment.create!(body: RandomData.random_paragraph, post: my_post, user: my_user) }
 
 
-  context "unauthenticated user" do
-    it "GET index return http success" do
-      get :index
-      expect(response).to have_http_status(:success)
-    end
+   context "unauthenticated user" do
+     it "GET index returns http success" do
+       get :index
+       expect(response).to have_http_status(:success)
+     end
 
     it "GET show return http success" do
       get :show, id: my_post.id
@@ -20,7 +20,7 @@ include RandomData
     end
 
     it "GET show returns child comments" do
-      get show, id: my_post.id
+      get :show, id: my_post.id
       response_hash = JSON.parse response.body
       expect(response_hash['comments']).to_not be_nil
     end
@@ -42,7 +42,7 @@ include RandomData
     end
 
     it "GET show returns child comments" do
-      get show, id: my_post.id
+      get :show, id: my_post.id
       response_hash = JSON.parse response.body
       expect(response_hash['comments']).to_not be_nil
     end
